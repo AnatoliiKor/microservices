@@ -1,13 +1,42 @@
 package com.epam.javacc.microservices.one;
 
+import com.netflix.discovery.EurekaClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
-public class OneApplication {
+@RestController
+@EnableEurekaClient
+public class OneApplication implements OneController {
+
+	@Autowired
+	@Lazy
+	private EurekaClient eurekaClient;
+
+	@Value("${spring.application.name}")
+	private String appName;
 
 	public static void main(String[] args) {
 		SpringApplication.run(OneApplication.class, args);
 	}
 
+	@Override
+	public String greeting(){
+		return String.format(
+				"Hello from '%s'!", eurekaClient.getApplication(appName).getName());
+	}
+
+	@Override
+	public List<String> getList() {
+		return new ArrayList<>(Arrays.asList("first", "second", "third"));
+	}
 }

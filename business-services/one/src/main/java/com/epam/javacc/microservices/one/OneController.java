@@ -1,13 +1,16 @@
 package com.epam.javacc.microservices.one;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
-public class OneController {
+import java.util.List;
 
-    @GetMapping
-    public String getAnswer(){
-        return "Answer from 'ONE' microservice";
-    }
+public interface OneController {
+
+    @RequestMapping("/greeting")
+    String greeting();
+
+    @RequestMapping("/list")
+    List <String> getList();
+
 }

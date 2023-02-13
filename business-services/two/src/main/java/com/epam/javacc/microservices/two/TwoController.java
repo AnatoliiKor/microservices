@@ -4,10 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TwoController {
+public interface TwoController {
 
     @GetMapping
-    public String getAnswer(){
-        return "Answer from 'TWO' microservice";
-    }
+    String getAnswer();
 }
