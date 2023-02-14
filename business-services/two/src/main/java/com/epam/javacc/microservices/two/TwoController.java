@@ -8,4 +8,5 @@ public interface TwoController {
 
     @GetMapping
     String getAnswer();
+
 }
