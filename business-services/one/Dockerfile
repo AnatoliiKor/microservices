@@ -6,6 +6,6 @@ LABEL description="One module"
 
 COPY target/one-0.0.1-SNAPSHOT.jar /one-0.0.1-SNAPSHOT.jar
 
-EXPOSE 8080
+EXPOSE 8081
 
 ENTRYPOINT [ "java", "-jar", "/one-0.0.1-SNAPSHOT.jar" ]

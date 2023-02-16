@@ -6,6 +6,6 @@ LABEL description="Feign-api module"
 
 COPY target/feign-api-0.0.1-SNAPSHOT.jar /feign-api-0.0.1-SNAPSHOT.jar
 
-EXPOSE 8080
+EXPOSE 9000
 
 ENTRYPOINT [ "java", "-jar", "/feign-api-0.0.1-SNAPSHOT.jar" ]

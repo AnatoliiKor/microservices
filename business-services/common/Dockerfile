@@ -6,6 +6,6 @@ LABEL description="Common module"
 
 COPY target/common-0.0.1-SNAPSHOT.jar /common-0.0.1-SNAPSHOT.jar
 
-EXPOSE 8080
+EXPOSE 8000
 
 ENTRYPOINT [ "java", "-jar", "/common-0.0.1-SNAPSHOT.jar" ]
