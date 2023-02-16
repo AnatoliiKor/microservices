@@ -18,7 +18,6 @@
     <modules>
         <module>one</module>
         <module>two</module>
-        <module>two-api</module>
         <module>feign-api</module>
         <module>common</module>
     </modules>
@@ -34,10 +33,37 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-<!--            <version>3.1.2</version>-->
         </dependency>
 
     </dependencies>
 
+      <build>
+      <plugins>
+          <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>build-helper-maven-plugin</artifactId>
+              <version>3.3.0</version>
+              <executions>
+                  <execution>
+                      <id>add-source</id>
+                      <phase>generate-resources</phase>
+                      <goals>
+                          <goal>add-resource</goal>
+                      </goals>
+                      <configuration>
+                          <resources>
+                              <resource>
+                                  <directory>${project.basedir}/docker/springboot-app</directory>
+<!--                                    <directory>${base-path}/docker/springboot-app</directory>-->
+                                  <targetPath>${project.build.directory}/docker</targetPath>
+                                  <filtering>true</filtering>
+                              </resource>
+                          </resources>
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin>
+      </plugins>
+  </build>
 
 </project>
