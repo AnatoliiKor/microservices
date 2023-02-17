@@ -15,9 +15,6 @@ public class TwoZuulController {
 
     @GetMapping("/two/{id}")
     public Two findById(@PathVariable long id, HttpServletRequest req, HttpServletResponse res) {
-        if (req.getHeader("Test") != null) {
-            res.addHeader("Test", req.getHeader("Test"));
-        }
         return new Two(Long.parseLong(randomNumeric(2)), randomAlphabetic(4));
     }
 }

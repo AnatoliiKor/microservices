@@ -1,51 +1,57 @@
 version: "3.9"
 services:
-#  zipkin:
-#    image: openzipkin/zipkin
-#    ports:
-#      - "9411:9411"
-#
-#  graphite:
-#    image: graphiteapp/graphite-statsd
-#    ports:
-#      - "2003:2003"
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+
+  graphite:
+    image: graphiteapp/graphite-statsd
+    ports:
+      - "2003:2003"
 
   discovery:
     build: platform-services/discovery
     ports:
       - "8761:8761"
 
-#  apigateway:
-#    build: platform-services/apigateway/
-#    ports:
-#      - "8080:8080"
+  apigateway:
+    build: platform-services/apigateway/
+    ports:
+      - "8080:8080"
 
   one:
     build: business-services/one
     ports:
       - "8081:8081"
-#    links:
-##      - zipkin
-##      - graphite
-#      - discovery
+    links:
+      - zipkin
+      - graphite
+      - discovery
 
   two:
     build: business-services/two
+    ports:
+      - "8082:8082"
     links:
-#      - zipkin
-#      - graphite
+      - zipkin
+      - graphite
       - discovery
 
   common:
     build: business-services/common
+    ports:
+      - "8000:8000"
     links:
-#      - zipkin
-#      - graphite
+      - zipkin
+      - graphite
       - discovery
 
   feign:
     build: business-services/feign-api
+    ports:
+      - "9000:9000"
     links:
-#      - zipkin
-#      - graphite
+      - zipkin
+      - graphite
       - discovery

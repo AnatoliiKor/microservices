@@ -1,6 +1,9 @@
 package com.epam.javacc.microservices.one;
 
 import com.netflix.discovery.EurekaClient;
+import com.netflix.servo.monitor.BasicCounter;
+import com.netflix.servo.monitor.Counter;
+import com.netflix.servo.monitor.MonitorConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -25,14 +28,17 @@ public class OneApplication implements OneController {
 	@Value("${spring.application.name}")
 	private String appName;
 
+	Counter counter = new BasicCounter(MonitorConfig.builder("counter").build());
+
 	public static void main(String[] args) {
 		SpringApplication.run(OneApplication.class, args);
 	}
 
 	@Override
 	public String greeting(){
-		return String.format(
-				"Hello from '%s'!", eurekaClient.getApplication(appName).getName());
+		counter.increment();
+		return String.format("Hello from '%s'! Number of requests to greeting service is %d",
+				eurekaClient.getApplication(appName).getName(), counter.getValue().intValue());
 	}
 
 	@Override
