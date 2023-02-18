@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: local
+          uri: http://localhost:8082
+          predicates:
+            - Path=/two/58
+        - id: local1
+          uri: http://localhost:8082
+          predicates:
+            - Path=/two/**
+        - id: local3
+          uri: http://localhost:8082
+          predicates:
+            - Path=/
+        - id: local2
+          uri: https://nau.edu.ua
+          predicates:
+            - Path=/en/menu/university/about-us.html
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
