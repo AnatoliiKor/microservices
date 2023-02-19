@@ -15,7 +15,7 @@ public class ZuulTest {
     @Disabled
     @Test
     public void whenSendRequestToFooResource_thenOK() {
-        Response response = RestAssured.get("http://localhost:8080/two/1");
+        Response response = RestAssured.get("http://localhost:8062/two/1");
 
         assertEquals(200, response.getStatusCode());
     }

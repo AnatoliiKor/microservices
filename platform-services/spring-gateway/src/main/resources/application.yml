@@ -1,23 +1,24 @@
+server:
+  port: 8090
+
 spring:
+  application:
+    name: spring-gateway
   cloud:
     gateway:
       routes:
-        - id: local
-          uri: http://localhost:8082
-          predicates:
-            - Path=/two/58
-        - id: local1
+        - id: two-id
           uri: http://localhost:8082
           predicates:
             - Path=/two/**
-        - id: local3
+        - id: two-direct
           uri: http://localhost:8082
           predicates:
             - Path=/
-        - id: local2
-          uri: https://nau.edu.ua
+        - id: one-direct
+          uri: http://localhost:8081
           predicates:
-            - Path=/en/menu/university/about-us.html
+            - Path=/greeting
 management:
   endpoints:
     web:

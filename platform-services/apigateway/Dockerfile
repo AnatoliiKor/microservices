@@ -6,6 +6,6 @@ LABEL description="API Gateway Zuul module"
 
 COPY target/apigateway-0.0.1-SNAPSHOT.jar /apigateway-0.0.1-SNAPSHOT.jar
 
-EXPOSE 80
+EXPOSE 8062
 
 ENTRYPOINT [ "java", "-jar", "/apigateway-0.0.1-SNAPSHOT.jar" ]
