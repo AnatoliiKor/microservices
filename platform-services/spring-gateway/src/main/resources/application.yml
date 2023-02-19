@@ -19,6 +19,18 @@ spring:
           uri: http://localhost:8081
           predicates:
             - Path=/greeting
+        - id: akf
+          uri: http://aki.nau.edu.ua
+          predicates:
+            - Path=/abiturient-2/
+        - id: nau
+          uri: https://nau.edu.ua
+          predicates:
+            - Path=/ua/info/10-prichin-chomu-nau/
+        - id: shini
+          uri: https://autoshini.com
+          predicates:
+            - Path=/podbor-shin
 management:
   endpoints:
     web:

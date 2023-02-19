@@ -6,6 +6,15 @@ zuul:
     direct:
       path: /**
       url: http://localhost:8082/
+    nau:
+      path: /nau/**
+      url: https://nau.edu.ua
+    akf:
+      path: /akf/**
+      url: https://nau.edu.ua/
+    shina:
+      path: /shina/**
+      url: https://autoshini.com/
 spring:
   application:
     name: zuul-server
