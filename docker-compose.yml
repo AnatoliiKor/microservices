@@ -1,14 +1,14 @@
 version: "3.8"
 services:
-#  zipkin:
-#    image: openzipkin/zipkin
-#    ports:
-#      - "9411:9411"
-#
-#  graphite:
-#    image: graphiteapp/graphite-statsd
-#    ports:
-#      - "2003:2003"
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+
+  graphite:
+    image: graphiteapp/graphite-statsd
+    ports:
+      - "2003:2003"
 
   eureka-server:
     build: platform-services/discovery
@@ -39,25 +39,25 @@ services:
       server.port: 8082
       eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka/
 
-#  common:
-#    build: business-services/common
-#    ports:
-#      - "8000:8000"
-#    depends_on:
-#      - eureka-server
-#    environment:
-#      server.port: 8000
-#      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka/
-#
-#  feign:
-#    build: business-services/feign-api
-#    ports:
-#      - "9000:9000"
-#    depends_on:
-#      - eureka-server
-#    environment:
-#      server.port: 9000
-#      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka/
+  common:
+    build: business-services/common
+    ports:
+      - "8000:8000"
+    depends_on:
+      - eureka-server
+    environment:
+      server.port: 8000
+      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka/
+
+  feign:
+    build: business-services/feign-api
+    ports:
+      - "9000:9000"
+    depends_on:
+      - eureka-server
+    environment:
+      server.port: 9000
+      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka/
 
   apigateway:
     build: platform-services/apigateway
